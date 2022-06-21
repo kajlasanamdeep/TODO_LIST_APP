@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    ul{
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        overflow-y: auto;
+    }
+    li{
+        width: max-content;
+        margin: 5px;
+    }
+    .li-input{
+        background-color: transparent;
+        border:none;
+        width: 100px;
+    }
+    .li-btn{
+        border:none;
+        background-color: transparent;
+        padding: 1px;
+        text-decoration:underline;
+    }
+</style>
+<body>
+    <center>
+    <form action="/" method="post">
+        <h1>TO DO MAKER</h1>
+        <input name="AT" type="time" required/>
+        <input name="DO" type="text" placeholder="Task..." required/>
+        <input type="submit" value="ADD"/>
+    </form>
+    <h2>To Do List</h2>
+<ul>
+<% tasks.forEach((task)=>{ %>
+<li>
+    <form action="/update/<%=task.id%>" method="post">
+    <input type="time" class="li-input" name="AT" value="<%=task.data().AT%>"/>
+    <input type="text" class="li-input" name="DO" value="<%=task.data().DO%>"/>
+    <input class="li-btn" type="submit" value="UPDATE"/>
+    <a class="li-btn" href="/delete/<%=task.id%>">X</a>
+    </form>
+</li>
+<% }) %>  
+</ul>
+</center>
+</body>
+</html>
